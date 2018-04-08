@@ -5,9 +5,14 @@ fileMenuLabel = "File"
 fileLoadCommand = "Load"
 fileUnloadCommand = "Unload"
 
-testProgramMenuLabel = "TestProgram"
+testProgramMenuLabel = "Testprogram"
 testProgramPinsCommand = "Pins"
 testProgramPingroupsCommand = "Pingroups"
+
+runMenuLabel = "Run"
+runAllCommand = "All"
+runIoCommand = "I/O"
+runPwrCommand = "Power"
 
 resultMenuLabel = "Result"
 resultIoCommand = "I/O"

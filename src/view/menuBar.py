@@ -25,6 +25,12 @@ class MenuBar(Menu):
         testProgram.add_command(label = props.testProgramPinsCommand)
         testProgram.add_command(label = props.testProgramPingroupsCommand)
         
+        run = Menu(master, tearoff=0)
+        self.add_cascade(label= props.runMenuLabel, menu = run)
+        run.add_command(label = props.runAllCommand)
+        run.add_command(label = props.runIoCommand)
+        run.add_command(label = props.runPwrCommand)
+        
         result = Menu(master, tearoff=0)
         self.add_cascade(label= props.resultMenuLabel, menu = result)
         result.add_command(label = props.resultIoCommand)
