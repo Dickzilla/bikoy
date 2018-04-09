@@ -1,4 +1,3 @@
-
 mainTitle = "Main OST Window"
 
 fileMenuLabel = "File"
@@ -6,8 +5,12 @@ fileLoadCommand = "Load"
 fileUnloadCommand = "Unload"
 
 testProgramMenuLabel = "Testprogram"
-testProgramPinsCommand = "Pins"
-testProgramPingroupsCommand = "Pingroups"
+testProgramIoPinsCommand = "I/O Pins"
+testProgramIoPingroupsCommand = "I/O Pingroups"
+testProgramPwrPinsCommand = "Power Pins"
+testProgramPwrPingroupsCommand = "Power Pingroups"
+testProgramIoTestsCommand = "I/O Tests"
+testProgramPwrTestsCommand = "Power Tests"
 
 runMenuLabel = "Run"
 runAllCommand = "All"
