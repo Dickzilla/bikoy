@@ -3,8 +3,8 @@ Created on 8 Apr 2018
 
 @author: BIKOYPOGI
 '''
-from testprogram.pinref import PinRef
-from testprogram.chType import ChType
+from testprogram.pins.pinRef import PinRef
+from testprogram.pins.pinType import PinType
 
 class PinGroup(PinRef):
     '''
@@ -16,7 +16,7 @@ class PinGroup(PinRef):
         group      List of testprogram.Pin that belongs to this group, eg ['TMS', 'TDI']
     '''
 
-    def __init__(self, name, chtype: ChType):
+    def __init__(self, name, chtype: PinType):
         '''
         Constructor
         '''

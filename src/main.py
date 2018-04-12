@@ -4,13 +4,11 @@ Created on 6 Apr 2018
 @author: BIKOYPOGI
 '''
 from tkinter import Tk
-import view.ostApp as ostApp
+from view.ostApp import OstApp
 
 if __name__ == '__main__':
     root=Tk()
-    root.geometry("400x300")
-    app=ostApp.OstApp(root)
-#     app.pack()
+    app=OstApp(root)
     root.mainloop()
 
     

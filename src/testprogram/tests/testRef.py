@@ -3,10 +3,10 @@ Created on 8 Apr 2018
 
 @author: BIKOYPOGI
 '''
-from controller.ifvm import IFVM
-from testprogram.pinref import PinRef
-from testprogram.pin import Pin
-from testprogram.pingroup import PinGroup
+from controller.pmu import Pmu
+from testprogram.pins.pinRef import PinRef
+from testprogram.pins.pin import Pin
+from testprogram.pins.pinGroup import PinGroup
 
 class TestRef:
     '''
@@ -15,9 +15,9 @@ class TestRef:
     Attributes:
         name       String name for this test, eg. "Gpio18_PinCont" or "Vdd18_PsShorts"
         pinref     Pin reference where this applies to
-        force      In IFVM, amount of current to force (in mA)
+        force      In Pmu, amount of current to force (in mA)
         delay      Time delay before acquiring measurement (in ms)
-        meas       In IFVM, list of measured voltage (in V)
+        meas       In Pmu, list of measured voltage (in V)
     '''
 
 
@@ -32,6 +32,6 @@ class TestRef:
         self.meas = []
     
     def get(self) -> list[float]:
-        ifvm = IFVM(self)
+        ifvm = Pmu(self)
         self.meas = ifvm.get()
         return self.meas

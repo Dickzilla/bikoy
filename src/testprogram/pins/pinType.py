@@ -4,7 +4,7 @@ Created on 8 Apr 2018
 @author: BIKOYPOGI
 '''
 
-class ChType:
+class PinType:
     '''
     This is a tester channel basic type enumeration.
     

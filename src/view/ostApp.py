@@ -1,18 +1,22 @@
-from tkinter import *
 import resources.props as props
 from view import menuBar
+from view.mainBody import MainBody
+from tkinter.constants import BOTH
 
-class OstApp(Frame):
+class OstApp():
 
     def __init__(self, master=None):
-        Frame.__init__(self, master, relief=RIDGE, bd=2)   
         self.master=master
-        self.init_window()
+        self.init_app()
         
-    def init_window(self):
+    def init_app(self):
         self.master.title(props.mainTitle)
+        self.master.geometry("600x300")
         menubar = menuBar.MenuBar(self.master)
         self.master.config(menu=menubar)
-        self.pack()
+        self.master.option_add('*tearOff', False)
+        
+        mainBody = MainBody(self.master)
+        mainBody.pack(fill=BOTH, expand=True)
 
         

@@ -3,8 +3,8 @@ Created on 28 Mar 2018
 
 @author: BIKOYPOGI
 '''
-from testprogram.pinref import PinRef
-from testprogram.chType import ChType
+from testprogram.pins.pinRef import PinRef
+from testprogram.pins.pinType import PinType
 
 class Pin(PinRef):
     '''
@@ -14,10 +14,10 @@ class Pin(PinRef):
         name       String name of this DUT pin, typically from package pinout, eg. "TMS"
         pinout     Pinout assignment from the package, eg "AB23"
         chtype     Tester channel type, eg either "IO" or "PWR"
-        channel    Tester channel assignment/mapping, eg "0x00" to "0xFFF"
+        channel    Tester channel assignment/mapping, eg "0x0000" to "0xFFFF"
     '''
 
-    def __init__(self, name, pinout: str, chtype: ChType, channel: int):
+    def __init__(self, name, pinout: str, chtype: PinType, channel: int):
         '''
         Constructor
         '''

@@ -3,22 +3,22 @@ Created on 8 Apr 2018
 
 @author: BIKOYPOGI
 '''
-from testprogram.testref import TestRef
+from testprogram.tests import testRef
 from time import sleep
-from testprogram.pinref import PinRef
-from testprogram.pin import Pin
-from testprogram.pingroup import PinGroup
+from testprogram.pins.pinRef import PinRef
+from testprogram.pins.pin import Pin
+from testprogram.pins.pinGroup import PinGroup
 
-class IFVM:
+class Pmu:
     '''
-    Tester currently supports IFVM mode only.
+    Tester currently supports Pmu IFVM mode only.
     
     Attributes:
         testref    The name of the TestRef that needs the measurement
-        result     Result of this IFVM measurement (in V)
+        result     Result of this Pmu measurement (in V)
     '''
 
-    def __init__(self, testref: TestRef):
+    def __init__(self, testref: testRef.TestRef):
         '''
         Constructor
         '''
