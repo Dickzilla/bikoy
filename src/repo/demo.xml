@@ -1,0 +1,16 @@
+<RavenRevA>
+  <Gpio18_PinCont>
+    <Gpio18_Opens delay="2e-3" force="100e-6" hilim="1.5" lolim="200e-3" pinref="Gpio18_Opens_Pins" testtype="BASIC"/>
+    <Gpio18_Opens delay="2e-3" force="100e-6" hilim="1.5" lolim="200e-3" pinref="Gpio18_Opens_Pins" testtype="BASIC"/>
+  </Gpio18_PinCont>
+  <Gpio18_Opens_Pins>
+    <GpioPins Pin="PWROK" PinType="IO"/>
+    <JtagPins Pin="TCK" PinType="IO"/>
+  </Gpio18_Opens_Pins>
+  <Pins>
+    <PWROK Channel="0x0000" PinType="IO"/>
+    <RST_L Channel="0x0001" PinType="IO"/>
+    <TCK Channel="0x0002" PinType="IO"/>
+    <TMS Channel="0x0003" PinType="IO"/>
+  </Pins>
+</RavenRevA>

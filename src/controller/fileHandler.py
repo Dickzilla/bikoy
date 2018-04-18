@@ -4,12 +4,11 @@ Created on 9 Apr 2018
 @author: BIKOYPOGI
 '''
 import os
-from testprogram.tests.testFlow import TestFlow
-from testprogram.tests.testRef import TestRef
-from testprogram.pins.pin import Pin
-from testprogram.pins.pinGroup import PinGroup
-from testprogram.pins.pinType import PinType
-from testprogram.pins.pinRef import PinRef
+from repo import *
+from resources import *
+from testprogram.pins import *
+from testprogram.tests import *
+
 
 class FileHandler:
     '''
@@ -27,12 +26,11 @@ class FileHandler:
         if (fullpath != None):
             self.fullpath = fullpath
                 
-    def load(self) -> TestFlow:
-        self.testflow = TestFlow()
-        self.testflow.tests = self.parse(self.fullpath)
+    def load(self) -> testFlow.TestFlow:
+        self.testflow = self.parse(self.fullpath)
         return self.testflow
             
-    def parse(self, fullpath):
+    def parse(self, fullpath: str):
         pinA = Pin("PinA", "AA11", PinType.IO, 0x0001)
         pinB = Pin("PinB", "BB22", PinType.IO, 0x0002)
         ioGroup = PinGroup("IoGroup", PinType.IO)
