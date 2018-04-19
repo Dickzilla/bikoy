@@ -8,6 +8,7 @@ class OstApp():
     def __init__(self, master=None):
         self.master=master
         self.init_app()
+        self.tp = None
         
     def init_app(self):
         self.master.title(props.mainTitle)

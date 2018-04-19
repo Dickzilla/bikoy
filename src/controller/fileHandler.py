@@ -3,11 +3,9 @@ Created on 9 Apr 2018
 
 @author: BIKOYPOGI
 '''
-import os
-from repo import *
-from resources import *
-from testprogram.pins import *
-from testprogram.tests import *
+from testprogram.tp import Tp
+from testprogram.pins.pinRef import PinRef
+from testprogram.tests.testFlow import TestFlow
 
 
 class FileHandler:
@@ -26,17 +24,18 @@ class FileHandler:
         if (fullpath != None):
             self.fullpath = fullpath
                 
-    def load(self) -> testFlow.TestFlow:
-        self.testflow = self.parse(self.fullpath)
-        return self.testflow
+    def load(self, tp: Tp) -> Tp:
+        self.tp = self.parse(self.fullpath, tp)
+        return self.tp
             
-    def parse(self, fullpath: str):
-        pinA = Pin("PinA", "AA11", PinType.IO, 0x0001)
-        pinB = Pin("PinB", "BB22", PinType.IO, 0x0002)
-        ioGroup = PinGroup("IoGroup", PinType.IO)
-        ioGroup.group.append(pinA, pinB)
-        testIo = TestRef("IoTest", ioGroup, 100.0, 2.0)
-        result = TestFlow(os.path.basename(self.fullpath))
-        result.tests.append(testIo)
-        return result
+    def parse(self, fullpath: str, tp: Tp) -> Tp:
+        from lxml import etree
+        root = etree.parse(fullpath)
+        # Print the loaded XML
+        if isinstance(root, PinRef):
+            tp.pinref = root
+        elif isinstance(root, TestFlow):
+            tp.testflow = root
+        tp.tree = root
+        return tp
         

@@ -21,7 +21,7 @@ class MainBody(Frame):
     def show_default(self, name):
         self.window = Panedwindow(self, orient=HORIZONTAL)
         self.window.pack(fill=BOTH, expand=True)
-        lframe = TestprogramPane(self, name)
+        lframe = TestprogramPane(self, '/Users/BIKOYPOGI/eclipse-workspace/ost/src/repo/tests.xml')
         rframe = PropertyPane(self, 'Test Properties')
         self.window.add(lframe, weight=1)
         self.window.add(rframe, weight=1)

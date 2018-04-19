@@ -1,0 +1,6 @@
+<TestRef name="RavenRevA">
+  <TestFlow name="Gpio18_PinCont">
+    <Test delay="2e-3" force="100e-6" hilim="1.5" lolim="200e-3" name="Gpio18_Opens" pinref="Gpio18_Opens_Pins" testtype="BASIC"/>
+    <Test delay="2e-3" force="100e-6" hilim="1.5" lolim="200e-3" name="Gpio18_Shorts" pinref="Gpio18_Opens_Pins" testtype="BASIC"/>
+  </TestFlow>
+</TestRef>

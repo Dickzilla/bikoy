@@ -4,8 +4,8 @@ Created on 9 Apr 2018
 @author: BIKOYPOGI
 '''
 from tkinter.ttk import Labelframe, Treeview
-# from testprogram.tests.testFlow import TestFlow
-# from controller.fileHandler import FileHandler
+from testprogram.tp import Tp
+from controller.fileHandler import FileHandler
 from tkinter.constants import RIDGE, BOTH
 
 class TestprogramPane(Labelframe):
@@ -14,38 +14,29 @@ class TestprogramPane(Labelframe):
     '''
 
 
-    def __init__(self, master, testProgram):
+    def __init__(self, master, path: str):
         '''
         Constructor
         '''
         Labelframe.__init__(self, master)
-        self.config(width=200, height=300, relief=RIDGE, text=testProgram, padding=10)
-#         fileHandler = FileHandler(testProgram)
-#         self.testFlow = fileHandler.load()
-#         tp = self.testFlow.name
+        fileHandler = FileHandler(path)
+        self.tp = Tp()
+        self.tp = fileHandler.load(self.tp)
+        print(self.tp.testref.name)
+        self.config(width=200, height=300, relief=RIDGE, text=self.tp.testref.name, padding=10)
+        self.tree = Treeview(self)
+        self.populate(self.tp.tree)
+        self.tree.pack(fill=BOTH, expand=True)
 
-        tree = Treeview(self)
-        tree.pack(fill=BOTH, expand=True)
-        tree.insert('', 'end', 'start', text = 'START')
-        tree.insert('', 'end', 'test1', text = 'Vdd18_PsShorts')
-        tree.insert('', 'end', 'test2', text = 'Gpio18_PinCont', open = True)
-        tree.insert('', 'end', 'end', text = 'END')
-        tree.insert('test2', 'end', 'subtest1', text = 'Gpio18_Opens')
-        tree.insert('test2', 'end', 'subtest2', text = 'Gpio18_Shorts')
         
-        tree.heading('#0', text = 'Test Instance')
-        tree.config(columns=('type'))
-        tree.column('type', width = 200)
-        tree.heading('type', text = 'Instance Type')
-        
-        tree.set('start', 'type', 'Start Device')
-        tree.set('test1', 'type', 'Test Reference')
-        tree.set('test2', 'type', 'Flow Reference')
-        tree.set('subtest1', 'type', 'Test Reference')
-        tree.set('subtest2', 'type', 'Test Reference')
-        tree.set('end', 'type', 'End Device')
-        
-        
+    def populate(self, tp):
+        for element in tp.iter():
+            if (element.getparent() == None):
+                print(element.getparent(), element.get("name"))
+                self.tree.insert("", 'end', element.get("name"))
+            else:
+                print(element.getparent().get("name"), element.tag, element.get("name"))
+                self.tree.insert(element.getparent().get("name"), 'end', element.get("name"))
         
 #         test = self.testFlow.tests.pop()
 #         tree.insert(self.testFlow.name, 'end', text=test)
