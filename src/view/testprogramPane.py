@@ -25,7 +25,7 @@ class TestprogramPane(Labelframe):
         print(self.tp.testref.name)
         self.config(width=200, height=300, relief=RIDGE, text=self.tp.testref.name, padding=10)
         self.tree = Treeview(self)
-        self.populate(self.tp.tree)
+        self.populate(self.tp.testtree)
         self.tree.pack(fill=BOTH, expand=True)
 
         

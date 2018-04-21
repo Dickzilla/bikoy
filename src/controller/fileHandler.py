@@ -36,6 +36,6 @@ class FileHandler:
             tp.pinref = root
         elif isinstance(root, TestFlow):
             tp.testflow = root
-        tp.tree = root
+        tp.testtree = root
         return tp
         

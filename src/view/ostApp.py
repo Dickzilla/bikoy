@@ -13,11 +13,11 @@ class OstApp():
     def init_app(self):
         self.master.title(props.mainTitle)
         self.master.geometry("600x300")
-        menubar = menuBar.MenuBar(self.master)
+        menubar = menuBar.MenuBar(self)
         self.master.config(menu=menubar)
         self.master.option_add('*tearOff', False)
         
-        self.mainBody = MainBody(self.master)
+        self.mainBody = MainBody(self)
         self.mainBody.show()
         self.mainBody.pack(fill=BOTH, expand=True)
 
