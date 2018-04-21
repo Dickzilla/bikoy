@@ -7,6 +7,7 @@ from tkinter.ttk import Labelframe, Treeview
 from testprogram.tp import Tp
 from controller.fileHandler import FileHandler
 from tkinter.constants import RIDGE, BOTH
+from lxml import etree
 
 class PinsPane(Labelframe):
     '''
@@ -14,19 +15,19 @@ class PinsPane(Labelframe):
     '''
 
 
-    def __init__(self, master, path=None, name='Load TP -> Select Pinref'):
+    def __init__(self, master, name='Load TP -> Select Pinref'):
         '''
         Constructor
         '''
         Labelframe.__init__(self, master)
         self.name = name
-        self.path = path
+        self.path = '/Users/BIKOYPOGI/eclipse-workspace/ost/src/repo/pins.xml'
         self.tp = Tp()
         self.tree = Treeview(self)
         self.tree.pack(fill=BOTH, expand=True)
         self.config(width=400, height=300, relief=RIDGE, text=name, padding=10)
 #         self.tree.bind('<<TreeviewSelect>>', self.show_pinss)
-        self.pin_view = Labelframe(self)
+#         self.pin_view = Labelframe(self)
         self.pins = {}
         self.pingroups = {}
         self.load()
@@ -36,7 +37,7 @@ class PinsPane(Labelframe):
         if (self.path == None):
             self.tree.insert("", 'end', 'Default', text=self.name)  
         else:
-            fileHandler = FileHandler('/Users/BIKOYPOGI/eclipse-workspace/ost/src/repo/pins.xml')
+            fileHandler = FileHandler(self.path)
             self.tp = fileHandler.load(self.tp)
             self.populate(self.tp.pintree)
             
@@ -44,24 +45,29 @@ class PinsPane(Labelframe):
         for element in tp.iter():
             if (element.getparent() == None):
                 self.tree.insert("", 'end', element.get("name"), text=element.get("name"))
-                print('0: ', element.getparent(), ':', element.get("name"))
             else:
-                self.tree.insert(element.getparent().get("name"), 'end', element.get("name"), text=element.get("name"))
-                if (element.tag == 'Pin' and element.getparent().tag == 'Pins'):
-                    self.pins[element.get("name")] = {
+                if (element.tag == 'PinGroup'):
+                    self.tree.insert(element.getparent().get("name"), 'end', element.get("name"), text=element.get("name"))
+                    self.pingroups[element.get("name")] = {
+                        'pintype': element.get("pintype"),
+                        'pins': []
+                        }
+                elif (element.tag == 'Pins'):
+                    self.tree.insert(element.getparent().get("name"), 'end', element.get("name"), text=element.get("name"))
+                    self.pingroups[element.get("name")] = {
+                        'pins': []
+                        }
+                elif (element.tag == 'Pin' and element.getparent().tag == 'Pins'):
+                    self.tree.insert(element.getparent().get("name"), 'end', 
+                                     (element.getparent().get("name")+'.'+element.get("name")), text=element.get("name"))
+                    self.pingroups[element.get("name")] = {
                         'channel': element.get('channel'),
                         'pintype': element.get('pintype')
                         }
-                    print('1: ', element.getparent(), ':', element.get("name"))
-                elif (element.tag == 'PinGroup'):
-                    self.pinsgroups[element.get("name")] = {
-                        'pintype': element.get('pintype'),
-                        'pins': []
-                        }
-                    print('2: ', element.getparent(), ':', element.get("name"))
                 elif (element.tag == 'Pin' and element.getparent().tag == 'PinGroup'):
-                    self.pingroups[element.getparent().get('name')].get('pins').add(element.get("name"))
-                    print('3: ', element.getparent(), ':', element.get("name"))
+                    self.tree.insert(element.getparent().get("name"), 'end', 
+                                     (element.getparent().get("name")+'.'+element.get("name")), text=element.get("name"))
+                    self.pingroups[element.getparent().get('name')].get('pins').append(element.get("name"))
 # 
 #         tree = Treeview(self)
 #         tree.pack(fill=BOTH, expand=True)

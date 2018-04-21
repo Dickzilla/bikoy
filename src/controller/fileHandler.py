@@ -29,9 +29,7 @@ class FileHandler:
     def parse(self, fullpath: str, tp: Tp) -> Tp:
         from lxml import etree
         root = etree.parse(fullpath)
-        print(root.getroot().tag)
-        # Print the loaded XML
-        if (root.getroot().tag == 'Pinref'):
+        if (root.getroot().tag == 'PinRef'):
             tp.pintree = root
         elif (root.getroot().tag == 'TestRef'):
             tp.testtree = root

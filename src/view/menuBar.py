@@ -7,7 +7,7 @@ from tkinter import Menu, filedialog
 import resources.props as props
 from view.testprogramPane import TestprogramPane
 from tkinter.ttk import Panedwindow
-from tkinter.constants import HORIZONTAL, BOTH
+from tkinter.constants import HORIZONTAL
 from view.pinsPane import PinsPane
 from view.mainBody import MainBody
 # from testprogram.tests.testFlow import TestFlow

@@ -21,7 +21,7 @@ class MainBody(Frame):
         self.lframe = Labelframe(self)
         self.lframe = TestprogramPane(self)
         self.rframe = Labelframe(self)
-        self.rframe = PinsPane(self, 'Test Properties')
+        self.rframe = PinsPane(self)
         
     def show(self):
         self.lframe.config(text=self.name)
