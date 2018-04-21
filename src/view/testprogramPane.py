@@ -40,8 +40,8 @@ class TestprogramPane(Labelframe):
             self.populate(self.tp.testtree)
             
     def show_params(self, event):
-        if (self.tree.selection() != ('Default',)):
-            self.param_view.destroy()
+        self.param_view.destroy()
+        if (self.params.get(self.tree.selection()[0], None) != None):
             self.param_view = Labelframe(self)
             self.load_params(self.param_view, self.tree.selection()[0])
             self.param_view.config(text='Test Parameters')
