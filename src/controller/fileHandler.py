@@ -4,8 +4,6 @@ Created on 9 Apr 2018
 @author: BIKOYPOGI
 '''
 from testprogram.tp import Tp
-from testprogram.pins.pinRef import PinRef
-from testprogram.tests.testFlow import TestFlow
 
 
 class FileHandler:
@@ -31,11 +29,11 @@ class FileHandler:
     def parse(self, fullpath: str, tp: Tp) -> Tp:
         from lxml import etree
         root = etree.parse(fullpath)
+        print(root.getroot().tag)
         # Print the loaded XML
-        if isinstance(root, PinRef):
-            tp.pinref = root
-        elif isinstance(root, TestFlow):
-            tp.testflow = root
-        tp.testtree = root
+        if (root.getroot().tag == 'Pinref'):
+            tp.pintree = root
+        elif (root.getroot().tag == 'TestRef'):
+            tp.testtree = root
         return tp
         

@@ -1,18 +1,18 @@
 <PinRef name="RavenPins">
   <PinGroup name="Gpio18_Opens_Pins">
-    <PinGroup PinType="IO" name="GpioPins">
+    <PinGroup name="GpioPins" pintype="IO">
       <Pin name="PWROK"/>
       <Pin name="RST_L"/>
     </PinGroup>
-    <PinGroup PinType="IO" name="JtagPins">
+    <PinGroup name="JtagPins" pintype="IO">
       <Pin name="TCK"/>
       <Pin name="TMS"/>
     </PinGroup>
   </PinGroup>
   <Pins>
-    <PWROK Channel="0x0000" PinType="IO"/>
-    <RST_L Channel="0x0001" PinType="IO"/>
-    <TCK Channel="0x0002" PinType="IO"/>
-    <TMS Channel="0x0003" PinType="IO"/>
+    <Pin channel="0x0000" name="PWROK" pintype="IO"/>
+    <Pin channel="0x0001" name="RST_L" pintype="IO"/>
+    <Pin channel="0x0002" name="TCK" pintype="IO"/>
+    <Pin channel="0x0003" name="TMS" pintype="IO"/>
   </Pins>
 </PinRef>

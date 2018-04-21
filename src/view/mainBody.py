@@ -6,7 +6,7 @@ Created on 12 Apr 2018
 from tkinter.ttk import Frame, Panedwindow, Labelframe
 from tkinter.constants import HORIZONTAL, BOTH
 from view.testprogramPane import TestprogramPane
-from view.propertyPane import PropertyPane
+from view.pinsPane import PinsPane
 
 class MainBody(Frame):
     '''
@@ -21,7 +21,7 @@ class MainBody(Frame):
         self.lframe = Labelframe(self)
         self.lframe = TestprogramPane(self)
         self.rframe = Labelframe(self)
-        self.rframe = PropertyPane(self, 'Test Properties')
+        self.rframe = PinsPane(self, 'Test Properties')
         
     def show(self):
         self.lframe.config(text=self.name)

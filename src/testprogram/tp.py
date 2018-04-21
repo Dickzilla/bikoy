@@ -20,4 +20,5 @@ class Tp:
         self.testref = TestRef()
         self.pinref = PinRef()
         self.testtree = etree.ElementTree()
+        self.pintree = etree.ElementTree()
         

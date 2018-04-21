@@ -8,7 +8,7 @@ import resources.props as props
 from view.testprogramPane import TestprogramPane
 from tkinter.ttk import Panedwindow
 from tkinter.constants import HORIZONTAL, BOTH
-from view.propertyPane import PropertyPane
+from view.pinsPane import PinsPane
 from view.mainBody import MainBody
 # from testprogram.tests.testFlow import TestFlow
 # from view.testprogramPane import FileMenu
@@ -53,7 +53,7 @@ class MenuBar(Menu):
         filepath = filedialog.askopenfile()
         newBody= MainBody(self.parent.master)
         newBody.window = Panedwindow(self.parent.master, orient=HORIZONTAL)
-        newBody.rframe = PropertyPane(newBody.window, 'Test Properties')
+        newBody.rframe = PinsPane(newBody.window, 'Test Properties')
         newBody.lframe = TestprogramPane(newBody.window, filepath)
         self.parent.mainBody.window.destroy()
         self.parent.mainBody.destroy()
@@ -63,7 +63,7 @@ class MenuBar(Menu):
     def unload(self):
         newBody= MainBody(self.parent.master)
         newBody.window = Panedwindow(self.parent.master, orient=HORIZONTAL)
-        newBody.rframe = PropertyPane(newBody.window, 'Test Properties')
+        newBody.rframe = PinsPane(newBody.window, 'Test Properties')
         newBody.lframe = TestprogramPane(newBody.window)
         self.parent.mainBody.window.destroy()
         self.parent.mainBody.destroy()
