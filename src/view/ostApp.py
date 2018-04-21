@@ -17,7 +17,8 @@ class OstApp():
         self.master.config(menu=menubar)
         self.master.option_add('*tearOff', False)
         
-        mainBody = MainBody(self.master)
-        mainBody.pack(fill=BOTH, expand=True)
+        self.mainBody = MainBody(self.master)
+        self.mainBody.show()
+        self.mainBody.pack(fill=BOTH, expand=True)
 
         
