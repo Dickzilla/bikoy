@@ -14,28 +14,33 @@ class TestprogramPane(Labelframe):
     '''
 
 
-    def __init__(self, master, path: str):
+
+
+    def __init__(self, master, path=None, name = 'No TP Loaded'):
         '''
         Constructor
         '''
         Labelframe.__init__(self, master)
-        fileHandler = FileHandler(path)
         self.tp = Tp()
-        self.tp = fileHandler.load(self.tp)
-        print(self.tp.testref.name)
-        self.config(width=200, height=300, relief=RIDGE, text=self.tp.testref.name, padding=10)
         self.tree = Treeview(self)
-        self.populate(self.tp.testtree)
         self.tree.pack(fill=BOTH, expand=True)
+        self.tree.delete(*self.tree.get_children())
+        if (path != None):
+            self.load(path)
+        else:
+            self.tree.insert("", 'end', 'Default', text=name)  
+        self.config(width=200, height=300, relief=RIDGE, text=name, padding=10)
 
+    def load(self, path):
+        fileHandler = FileHandler(path)
+        self.tp = fileHandler.load(self.tp)
+        self.populate(self.tp.testtree)
         
     def populate(self, tp):
         for element in tp.iter():
             if (element.getparent() == None):
-                print(element.getparent(), element.get("name"))
                 self.tree.insert("", 'end', element.get("name"), text=element.get("name"))
             else:
-                print(element.getparent().get("name"), element.tag, element.get("name"))
                 self.tree.insert(element.getparent().get("name"), 'end', element.get("name"), text=element.get("name"))
         
 #         test = self.testFlow.tests.pop()

@@ -25,7 +25,7 @@ class MenuBar(Menu):
         file = Menu(parent.master)
         self.add_cascade(label= props.fileMenuLabel, menu = file)
         file.add_command(label = props.fileLoadCommand, command=self.load)
-        file.add_command(label = props.fileUnloadCommand)
+        file.add_command(label = props.fileUnloadCommand, command=self.unload)
         
         testProgram = Menu(parent.master)
         self.add_cascade(label= props.testProgramMenuLabel, menu = testProgram)
@@ -55,10 +55,20 @@ class MenuBar(Menu):
         newBody.window = Panedwindow(self.parent.master, orient=HORIZONTAL)
         newBody.rframe = PropertyPane(newBody.window, 'Test Properties')
         newBody.lframe = TestprogramPane(newBody.window, filepath)
+        self.parent.mainBody.window.destroy()
         self.parent.mainBody.destroy()
         self.parent.mainBody = newBody
         self.parent.mainBody.show()
-        self.parent.mainBody.pack(fill=BOTH, expand=True)
+        
+    def unload(self):
+        newBody= MainBody(self.parent.master)
+        newBody.window = Panedwindow(self.parent.master, orient=HORIZONTAL)
+        newBody.rframe = PropertyPane(newBody.window, 'Test Properties')
+        newBody.lframe = TestprogramPane(newBody.window)
+        self.parent.mainBody.window.destroy()
+        self.parent.mainBody.destroy()
+        self.parent.mainBody = newBody
+        self.parent.mainBody.show()
         
         
 #     def displayFlow(self, master, testFlow):

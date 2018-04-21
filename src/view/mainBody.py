@@ -19,7 +19,7 @@ class MainBody(Frame):
         self.name = name
         self.window = Panedwindow(self, orient=HORIZONTAL)
         self.lframe = Labelframe(self)
-        self.lframe = TestprogramPane(self, '/Users/BIKOYPOGI/eclipse-workspace/ost/src/repo/tests.xml')
+        self.lframe = TestprogramPane(self)
         self.rframe = Labelframe(self)
         self.rframe = PropertyPane(self, 'Test Properties')
         
