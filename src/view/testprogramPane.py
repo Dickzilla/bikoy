@@ -21,20 +21,32 @@ class TestprogramPane(Labelframe):
         Constructor
         '''
         Labelframe.__init__(self, master)
+        self.name = name
+        self.path = path
         self.tp = Tp()
         self.tree = Treeview(self)
         self.tree.pack(fill=BOTH, expand=True)
-        self.tree.delete(*self.tree.get_children())
-        if (path != None):
-            self.load(path)
-        else:
-            self.tree.insert("", 'end', 'Default', text=name)  
         self.config(width=200, height=300, relief=RIDGE, text=name, padding=10)
+        self.tree.bind('<<TreeviewSelect>>', self.show_params)
+        self.params = Labelframe(self)
+        self.load()
 
-    def load(self, path):
-        fileHandler = FileHandler(path)
-        self.tp = fileHandler.load(self.tp)
-        self.populate(self.tp.testtree)
+    def load(self):
+        self.tree.delete(*self.tree.get_children())
+        if (self.path == None):
+            self.tree.insert("", 'end', 'Default', text=self.name)  
+        else:
+            fileHandler = FileHandler(self.path)
+            self.tp = fileHandler.load(self.tp)
+            self.populate(self.tp.testtree)
+            
+    def show_params(self, event):
+        if (self.tree.selection() != ('Default',)):
+            self.params.destroy()
+            self.params = Labelframe(self)
+            print(self.tree.selection())
+            self.params.config(text='Test Parameters')
+            self.params.pack(fill=BOTH, expand=True)
         
     def populate(self, tp):
         for element in tp.iter():
