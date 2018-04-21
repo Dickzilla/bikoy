@@ -33,10 +33,10 @@ class TestprogramPane(Labelframe):
         for element in tp.iter():
             if (element.getparent() == None):
                 print(element.getparent(), element.get("name"))
-                self.tree.insert("", 'end', element.get("name"))
+                self.tree.insert("", 'end', element.get("name"), text=element.get("name"))
             else:
                 print(element.getparent().get("name"), element.tag, element.get("name"))
-                self.tree.insert(element.getparent().get("name"), 'end', element.get("name"))
+                self.tree.insert(element.getparent().get("name"), 'end', element.get("name"), text=element.get("name"))
         
 #         test = self.testFlow.tests.pop()
 #         tree.insert(self.testFlow.name, 'end', text=test)
