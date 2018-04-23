@@ -15,7 +15,7 @@ class OstApp():
         self.master.geometry("600x300")
         menubar = menuBar.MenuBar(self)
         self.master.config(menu=menubar)
-        self.master.option_add('*tearOff', False)
+        self.master.iconbitmap('resources/image/koala_icon.ico')
         
         self.mainBody = MainBody(self)
         self.mainBody.show()

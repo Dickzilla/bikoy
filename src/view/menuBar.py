@@ -21,6 +21,7 @@ class MenuBar(Menu):
     def __init__(self, parent):
         Menu.__init__(self, parent.master)
         self.parent = parent
+        self.option_add('*tearOff', False)
         
         file = Menu(parent.master)
         self.add_cascade(label= props.fileMenuLabel, menu = file)

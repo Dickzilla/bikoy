@@ -21,7 +21,7 @@ class PinsPane(Labelframe):
         '''
         Labelframe.__init__(self, master)
         self.name = name
-        self.path = '/Users/BIKOYPOGI/eclipse-workspace/ost/src/repo/pins.xml'
+        self.path = 'C:\\Users\\victord\\workspace_py\\ost\\src\\repo\\pins.xml'
         self.tp = Tp()
         self.tree = Treeview(self)
         self.tree.pack(fill=BOTH, expand=True)
