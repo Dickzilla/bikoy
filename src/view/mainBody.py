@@ -24,11 +24,6 @@ class MainBody(Frame):
         self.rframe = PinsPane(self)
         
     def show(self):
-        self.lframe.config(text=self.name)
         self.window.pack(fill=BOTH, expand=True)
         self.window.add(self.lframe, weight=1)
         self.window.add(self.rframe, weight=1)
-        
-        
-        
-        

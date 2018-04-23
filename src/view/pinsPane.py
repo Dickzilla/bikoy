@@ -3,6 +3,7 @@ Created on 9 Apr 2018
 
 @author: BIKOYPOGI
 '''
+from os.path import join
 from tkinter.ttk import Labelframe, Treeview
 from testprogram.tp import Tp
 from controller.fileHandler import FileHandler
@@ -15,17 +16,16 @@ class PinsPane(Labelframe):
     '''
 
 
-    def __init__(self, master, name='Load TP -> Select Pinref'):
+    def __init__(self, master, tp=None, name='Load TP -> Select Pinref'):
         '''
         Constructor
         '''
         Labelframe.__init__(self, master)
         self.name = name
-        self.path = 'C:\\Users\\victord\\workspace_py\\ost\\src\\repo\\pins.xml'
-        self.tp = Tp()
+        self.tp = tp
         self.tree = Treeview(self)
         self.tree.pack(fill=BOTH, expand=True)
-        self.config(width=400, height=300, relief=RIDGE, text=name, padding=10)
+        self.config(width=400, height=300, relief=RIDGE, text='Pin Definitions', padding=10)
 #         self.tree.bind('<<TreeviewSelect>>', self.show_pinss)
 #         self.pin_view = Labelframe(self)
         self.pins = {}
@@ -34,16 +34,14 @@ class PinsPane(Labelframe):
 
     def load(self):
         self.tree.delete(*self.tree.get_children())
-        if (self.path == None):
+        if (self.tp == None):
             self.tree.insert("", 'end', 'Default', text=self.name)  
         else:
-            fileHandler = FileHandler(self.path)
-            self.tp = fileHandler.load(self.tp)
             self.populate(self.tp.pintree)
             
     def populate(self, tp):
         for element in tp.iter():
-            if (element.getparent() == None):
+            if (element.tag == 'PinRef'):
                 self.tree.insert("", 'end', element.get("name"), text=element.get("name"))
             else:
                 if (element.tag == 'PinGroup'):

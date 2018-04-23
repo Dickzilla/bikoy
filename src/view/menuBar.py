@@ -10,6 +10,7 @@ from tkinter.ttk import Panedwindow
 from tkinter.constants import HORIZONTAL
 from view.pinsPane import PinsPane
 from view.mainBody import MainBody
+from controller.fileHandler import FileHandler
 # from testprogram.tests.testFlow import TestFlow
 # from view.testprogramPane import FileMenu
 
@@ -52,20 +53,24 @@ class MenuBar(Menu):
         
     def load(self):
         filepath = filedialog.askopenfile()
+        fileHandler = FileHandler(filepath)
+        self.tp = fileHandler.load(self.parent.tp)
+        self.parent.tp = self.tp
         newBody= MainBody(self.parent.master)
         newBody.window = Panedwindow(self.parent.master, orient=HORIZONTAL)
-        newBody.rframe = PinsPane(newBody.window, 'Test Properties')
-        newBody.lframe = TestprogramPane(newBody.window, filepath)
+        newBody.rframe = PinsPane(newBody.window, self.tp)
+        newBody.lframe = TestprogramPane(newBody.window, self.tp)
         self.parent.mainBody.window.destroy()
         self.parent.mainBody.destroy()
         self.parent.mainBody = newBody
         self.parent.mainBody.show()
         
     def unload(self):
+        self.parent.tp = None
         newBody= MainBody(self.parent.master)
         newBody.window = Panedwindow(self.parent.master, orient=HORIZONTAL)
-        newBody.rframe = PinsPane(newBody.window, 'Test Properties')
-        newBody.lframe = TestprogramPane(newBody.window)
+        newBody.rframe = PinsPane(newBody.window, tp=None)
+        newBody.lframe = TestprogramPane(newBody.window, tp=None)
         self.parent.mainBody.window.destroy()
         self.parent.mainBody.destroy()
         self.parent.mainBody = newBody

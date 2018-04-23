@@ -1,8 +1,11 @@
 from lxml.etree import Element, SubElement, ElementTree
 
+# Testprogram container
+RavenRevA = Element('Testprogram', name='RavenRevA')
+
 # Tests and Flows
-RavenRevA = Element('TestRef', name='RavenRevA')
-Gpio18_PinCont = SubElement(RavenRevA, 'TestFlow', name='Gpio18_PinCont')
+RavenTests = SubElement(RavenRevA, 'TestRef', name='RavenTests')
+Gpio18_PinCont = SubElement(RavenTests, 'TestFlow', name='Gpio18_PinCont')
 Gpio18_Opens = SubElement(Gpio18_PinCont, 'Test', name='Gpio18_Opens',
                           testtype='BASIC', 
                           pinref='GpioPins', 
@@ -17,12 +20,10 @@ Gpio18_Shorts = SubElement(Gpio18_PinCont, 'Test', name='Gpio18_Shorts',
                            lolim='200e-3', 
                            hilim='1.5',
                            delay='2e-3')
-MainFlow = ElementTree(RavenRevA)
-MainFlow.write('tests.xml', pretty_print=True)
 
 
 # Pins and Pingroups
-RavenPins = Element('PinRef', name='RavenPins')
+RavenPins = SubElement(RavenRevA, 'PinRef', name='RavenPins')
 # Gpio18_Opens_Pins = SubElement(RavenPins, 'PinGroup', name='Gpio18_Opens_Pins', pintype='IO')
 
 GpioPins = SubElement(RavenPins, 'PinGroup', name='GpioPins', pintype='IO')
@@ -39,7 +40,7 @@ SubElement(Pins, 'Pin', name='RST_L', pintype='IO', channel = '0x0001')
 SubElement(Pins, 'Pin', name='TCK', pintype='IO', channel = '0x0002')
 SubElement(Pins, 'Pin', name='TMS', pintype='IO', channel = '0x0003')
 
-PinDef = ElementTree(RavenPins)
-PinDef.write('pins.xml', pretty_print=True)
+Testprogram = ElementTree(RavenRevA)
+Testprogram.write('Testprogram.xml', pretty_print=True)
 
         

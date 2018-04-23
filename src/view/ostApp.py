@@ -12,7 +12,7 @@ class OstApp():
         
     def init_app(self):
         self.master.title(props.mainTitle)
-        self.master.geometry("600x300")
+        self.master.geometry("600x400")
         menubar = menuBar.MenuBar(self)
         self.master.config(menu=menubar)
         self.master.iconbitmap('resources/image/koala_icon.ico')

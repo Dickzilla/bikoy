@@ -19,19 +19,30 @@ class FileHandler:
         '''
         Constructor
         '''
-        if (fullpath != None):
-            self.fullpath = fullpath
+        if (fullpath != None): self.fullpath = fullpath
                 
-    def load(self, tp: Tp) -> Tp:
+    def load(self, tp=None):
+        if tp is None: tp = Tp()
         self.tp = self.parse(self.fullpath, tp)
         return self.tp
             
-    def parse(self, fullpath: str, tp: Tp) -> Tp:
+    def parse(self, fullpath, oldtp):
         from lxml import etree
         root = etree.parse(fullpath)
-        if (root.getroot().tag == 'PinRef'):
+        if (root.getroot().tag == 'Testprogram'):
+            temp = Tp()
+            for item in root.getroot().getchildren():
+                newtp = self.split(item, temp)
+        else:
+            newtp = self.split(root.getroot(), oldtp)
+        return newtp
+
+    def split(self, root, tp):
+        print(root.tag, ' => ' , root.get("name"))
+        if (root.tag == 'PinRef'):
             tp.pintree = root
-        elif (root.getroot().tag == 'TestRef'):
+        elif (root.tag == 'TestRef'):
             tp.testtree = root
         return tp
+
         
