@@ -38,7 +38,7 @@ class FileHandler:
         return newtp
 
     def split(self, root, tp):
-        print(root.tag, ' => ' , root.get("name"))
+#         print(root.tag, ' => ' , root.get("name"))
         if (root.tag == 'PinRef'):
             tp.pintree = root
         elif (root.tag == 'TestRef'):
